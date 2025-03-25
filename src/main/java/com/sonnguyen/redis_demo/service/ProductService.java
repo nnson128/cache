@@ -17,6 +17,7 @@ public class ProductService {
     private static final String PRODUCT_KEY_PREFIX = "product:";
     private static final String ALL_PRODUCTS_KEY = "products:all";
 
+// read data
     public List<Product> getAllProducts() {
         List<Product> cachedProducts = (List<Product>) redisService.getData(ALL_PRODUCTS_KEY);
         if (cachedProducts != null) {
@@ -44,6 +45,7 @@ public class ProductService {
         return product;
     }
 
+// write data
     public Product createProduct(Product product) {
         Product savedProduct = productRepository.save(product);
 
