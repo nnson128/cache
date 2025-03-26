@@ -12,7 +12,7 @@ Read: Like Cache-Aside.
 Write: DB trước, cache sau -> save vào cache khi write.
 
 
-## 2. Write-Around
+## 3. Write-Around
 
 Read: Like Cache-Aside.
 
