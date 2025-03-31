@@ -13,14 +13,19 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
+
+//        create and manager connection to redis
         template.setConnectionFactory(redisConnectionFactory);
-        // Serializer cho key (chuỗi)
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
-        // Serializer cho value (JSON)
+
+//      serialize key trước khi bất kì thao tác nào lên redis
+        template.setKeySerializer(new StringRedisSerializer()); //Xác định cách Redis lưu key.
+        template.setHashKeySerializer(new StringRedisSerializer()); // Xác định cách Redis lưu hash key.
+
+        // Serializer cho value (JSON) trước operation
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.afterPropertiesSet();
+
+        template.afterPropertiesSet(); // Kiểm tra và hoàn tất thiết lập
         return template;
     }
 }
